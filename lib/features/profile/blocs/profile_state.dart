@@ -6,7 +6,10 @@ class ProfileState extends Equatable {
 
   const ProfileState({this.userProfile});
 
-  ProfileState copyWith({UserProfileModel? userProfile}) => ProfileState(
+  ProfileState copyWith({
+    UserProfileModel? userProfile,
+  }) =>
+      ProfileState(
         userProfile: userProfile ?? this.userProfile,
       );
 
