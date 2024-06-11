@@ -3,5 +3,5 @@ import 'package:monki_bloc/features/home/model/meal_model.dart';
 
 abstract class HomeRepo {
   Future<BaseResponse<List<MealModel>>> getAllMeal();
-  Future<BaseResponse<MealModel>> getSingleMeal(String id);
+  Future<BaseResponse<MealModel?>> getSingleMeal(String id);
 }

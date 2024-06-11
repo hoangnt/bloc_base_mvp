@@ -9,7 +9,7 @@ class ProfileBloc extends Cubit<ProfileState> with BaseResponseHandleMixin {
 
   late final ProfileRepo repo;
 
-  Future<void> getProfile() async {
+  void getProfile() {
     handleBaseResponse<UserProfileModel?>(
       api: repo.getUserProfile(),
       onSuccess: (data) {

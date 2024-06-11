@@ -31,7 +31,7 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<BaseResponse<MealModel>> getSingleMeal(String id) async {
+  Future<BaseResponse<MealModel?>> getSingleMeal(String id) async {
     final res = await NetworkClient().get(
       endpoint: _getMealEndpoint,
       params: {},
