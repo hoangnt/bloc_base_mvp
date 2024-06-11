@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:monki_bloc/common/constant/entry_tab_index.dart';
 import 'package:monki_bloc/features/entry/blocs/entry_bloc.dart';
 import 'package:monki_bloc/features/entry/blocs/entry_state.dart';
-import 'package:monki_bloc/features/home/screen/home_screen.dart';
-import 'package:monki_bloc/features/profile/screen/profile_screen.dart';
 
 class EntryScreen extends StatelessWidget {
   const EntryScreen({super.key});
@@ -11,35 +10,23 @@ class EntryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<EntryBloc>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("this is appbar"),
       ),
       body: BlocBuilder<EntryBloc, EntryState>(
         builder: (context, state) {
-          return PageView(
-            controller: bloc.pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            children: const [
-              Center(
-                child: Text("this is search screen"),
-              ),
-              Center(
-                child: Text("this is monki cash screen"),
-              ),
-              HomeScreen(),
-              Center(
-                child: Text("this is order screen"),
-              ),
-              ProfileScreen()
-            ],
+          return IndexedStack(
+            index: state.currentIndex,
+            children: state.listScreen,
           );
         },
       ),
       bottomNavigationBar: BlocBuilder<EntryBloc, EntryState>(
         builder: (context, state) {
           return BottomNavigationBar(
-            currentIndex: state.currentIndex ?? 0,
+            currentIndex: state.currentIndex ?? EntryTabIndex.home,
             onTap: (index) {
               bloc.changeTab(index);
             },
