@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:monki_bloc/config/app_navigator_key.dart';
 import 'package:monki_bloc/config/injection.dart';
 import 'package:monki_bloc/features/entry/blocs/entry_bloc.dart';
 import 'package:monki_bloc/features/entry/screen/entry_screen.dart';
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => HomeBloc(getIt())),
         BlocProvider(create: (context) => ProfileBloc(getIt())),
       ],
-      child: const MaterialApp(
-        home: EntryScreen(),
+      child: MaterialApp(
+        navigatorKey: AppNavigatorKey.navigatorKey,
+        home: const EntryScreen(),
       ),
     );
   }
